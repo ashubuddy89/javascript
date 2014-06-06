@@ -1,0 +1,66 @@
+body{
+  background: #f2f2f2;
+  font: 14px arial;
+}
+
+.wrapper{
+  width: 600px;
+  margin: 30px auto;
+  border: solid 1px #890505;
+  border-radius: 10px;
+  padding: 20px;
+  background: #fff;
+}
+.list-none{
+  list-style: none;
+}
+.check-list{
+  margin: 0 0 10px;
+  padding: 0;
+}
+.check-list li{
+  margin-bottom: 10px;
+}
+/*input checkbox/radio css*/
+.check-block{
+  position: relative;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.control-label{
+  position: relative;
+
+  display: inline-block;
+}
+
+.check-box, .control-label input[type="checkbox"]{
+  position: absolute;
+  opacity: 0;
+}
+
+.label-text{
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border: solid 1px gray;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+
+input[type=checkbox]:checked + .label-text{
+  background:  url(../images/check.gif) center no-repeat;
+}
+
+.check-status{
+  background:#890505;
+  border-radius: 5px;
+  color: #fff; 
+  display: inline-block;
+  padding: 5px 10px;
+  margin-right: 10px;
+  text-decoration: none;
+}
