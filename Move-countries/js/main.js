@@ -4,32 +4,55 @@ var selectOption =  function(){
 
 selectOption.prototype = {
   init: function(){
+    this.pageTitle = document.title;
     this.leftBox = document.getElementById("left-multiple");
     this.rightBox = document.getElementById("right-multiple");
-    this.bindEvent();
+
+    this.SetPageHeading();
+  },
+  
+  SetPageHeading: function(){
+    document.getElementById("page-title").innerHTML = "Exercise " + this.pageTitle;
   },
 
-  moveOption: function(movefrom, moveto){
-   var positionArray = [];
-   while (movefrom.selectedIndex >= 0){
-    var moveObj = movefrom.options[movefrom.selectedIndex];
-    moveto.appendChild(moveObj);
-   }
+  moveOption: function(leftToRight){
+    var movefrom, moveto, self = this;
+
+    if(leftToRight){
+      movefrom = self.leftBox;
+      moveto = self.rightBox;
+    } else {
+      movefrom = self.rightBox;
+      moveto = self.leftBox;
+    }
+
+    while (movefrom.selectedIndex >= 0){
+      var moveObj = movefrom.options[movefrom.selectedIndex];
+      moveto.appendChild(moveObj);
+    }
   },
 
-  bindEvent: function(){
-    var self = this;
-
+  moveLefttoRight: function(){
+    var obj = this;
     document.getElementById("move").addEventListener('click', function(){
-      self.moveOption(self.leftBox, self.rightBox);
+      obj.moveOption(true);
     });
+  }, 
 
+  moveRightToLeft: function(){
+    var obj = this;
     document.getElementById("remove").addEventListener('click', function(){
-      self.moveOption(self.rightBox, self.leftBox);
+      obj.moveOption(false);
     });
+  },
+  
+  bindEvent: function(){
+    this.moveLefttoRight();
+    this.moveRightToLeft();
   },
 }
 
 window.onload= function(){
   var SelectOption = new selectOption();
+  SelectOption.bindEvent();
 }

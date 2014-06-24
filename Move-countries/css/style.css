@@ -16,6 +16,13 @@ body{
   overflow: hidden;
 }
 
+.page-title{
+  margin: -20px -50px 20px;
+  font-size: 1.4em;
+  background: #890505;
+  color: #fff;
+  padding: 10px;
+}
 .wrapper .left-block{
   width: 200px;
   float: left;
@@ -36,7 +43,7 @@ body{
   padding: 5px 10px;
   text-decoration: none;
   vertical-align: middle;
-  width: 55px;
+  width: 65px;
   margin-bottom: 20px;
 }
 
