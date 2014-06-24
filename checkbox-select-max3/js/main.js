@@ -1,31 +1,31 @@
-var CheckUncheckAll = function(form_id){
-  this.init(form_id);
+var CheckUncheckAll = function(){
+  this.init();
 }
 
 CheckUncheckAll.prototype = {
-  init: function(form_id){
-    this.checkUncheckform = document.getElementById(form_id);
+  init: function(){
+    this.checkUncheckform = document.getElementById("form");
     // console.log(this.checkUncheckform)
     this.maxDays = 3;
     this.none = document.getElementById("none");
-    this.check = document.getElementsByClassName("check-box");
+    this.check = document.getElementsByClassName("day");
   },
 
-  countCheckedBoxes: function(element){
+  checkMax: function(element){
     var selectedArray = [];
-   
-    for(i=0; i < this.checkUncheckform.elements.length; i++){
-      if(selectedArray.length <= this.maxDays){
-
-        if (this.checkUncheckform.elements[i].checked) {
-          selectedArray.push(this.checkUncheckform.elements[i]);
-        }
-      }
-      else {
-        alert("not more than 3")
-        element.checked = false;
+    for(i=0; i <= this.checkUncheckform.length; i++){
+      if(selectedArray <= this.maxDays){
+        selectedArray.push(this.checkUncheckform.elements[i]);
       }
     }
+  },
+
+  checkBoxBindEvent: function(){
+    var obj = this;
+    var checkboxes = document.getElementsByClassName('check-box');
+    document.getElementsByClassName('check-box').addEventListener("click", function(){
+      alert("in")
+    })
   }
 
 }
@@ -33,10 +33,4 @@ CheckUncheckAll.prototype = {
 
 window.onload = function() {
   var checked_object = new CheckUncheckAll("form");
-  var checkboxes = document.getElementsByClassName('check-box');
-  for (var i = 0; i < checkboxes.length; i++) {
-    checkboxes[i].addEventListener('click', function() {
-      checked_object.countCheckedBoxes(this);
-    });
-  }
 }
