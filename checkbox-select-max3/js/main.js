@@ -1,9 +1,9 @@
-var CheckUncheckAll = function(){
+var LimitSelectDays = function(){
   this.setAttributes();
   this.init();
 }
 
-CheckUncheckAll.prototype = {
+LimitSelectDays.prototype = {
   setAttributes: function() {
     this.pageTitle = document.title;
     this.form = document.getElementById("form");
@@ -63,5 +63,5 @@ CheckUncheckAll.prototype = {
 }
 
 window.onload = function() {
-  var checked_object = new CheckUncheckAll();
+  var limit_select_days = new LimitSelectDays();
 }
