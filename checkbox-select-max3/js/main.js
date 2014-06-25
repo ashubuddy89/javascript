@@ -1,36 +1,67 @@
 var CheckUncheckAll = function(){
+  this.setAttributes();
   this.init();
 }
 
 CheckUncheckAll.prototype = {
-  init: function(){
-    this.checkUncheckform = document.getElementById("form");
-    // console.log(this.checkUncheckform)
+  setAttributes: function() {
+    this.pageTitle = document.title;
+    this.form = document.getElementById("form");
     this.maxDays = 3;
     this.none = document.getElementById("none");
-    this.check = document.getElementsByClassName("day");
+    this.checkBox = document.getElementsByClassName("day");
+    this.storeSelectedDays = [];
   },
 
-  checkMax: function(element){
-    var selectedArray = [];
-    for(i=0; i <= this.checkUncheckform.length; i++){
-      if(selectedArray <= this.maxDays){
-        selectedArray.push(this.checkUncheckform.elements[i]);
+  init: function(){
+    this.setPageHeading();
+    this.checkBoxBindEvent();
+  },
+
+  checkBoxBindEvent: function(){
+    this.checkMaxThreeInputCheckBox();
+    this.uncheckAllInputCheckBox();
+  },
+
+  setPageHeading: function(){
+    document.getElementById("page-title").innerHTML = "Exercise " + this.pageTitle;
+  },
+
+  checkMaxThreeInputCheckBox: function(){
+    var obj = this;
+
+    for(i=0; i < obj.checkBox.length; i++){
+      this.checkBox[i].onclick = function(){
+        if(this.checked){
+          obj.none.checked = false;
+          obj.storeSelectedDays.push(this.value);
+        }
+        else if(!this.checked){
+          obj.storeSelectedDays.splice(obj.storeSelectedDays.indexOf(this.value), 1);
+        } 
+
+        if(obj.storeSelectedDays.length > obj.maxDays){
+            obj.storeSelectedDays.pop();
+            this.checked = false;
+            alert("you can't select more than 3 days. you have already selected " + obj.storeSelectedDays[0] + ", " + obj.storeSelectedDays[1] + " and " + obj.storeSelectedDays[2]);
+        }
       }
     }
   },
 
-  checkBoxBindEvent: function(){
+  uncheckAllInputCheckBox: function(){
     var obj = this;
-    var checkboxes = document.getElementsByClassName('check-box');
-    document.getElementsByClassName('check-box').addEventListener("click", function(){
-      alert("in")
-    })
-  }
+    obj.none.onclick = function(){
+      for(i=0; i < obj.checkBox.length; i++){
+        obj.checkBox[i].checked = false;
+        obj.storeSelectedDays.splice(0,obj.checkBox.length);
+        console.log(obj.storeSelectedDays)
+      }
+    }
+  },
 
 }
 
-
 window.onload = function() {
-  var checked_object = new CheckUncheckAll("form");
+  var checked_object = new CheckUncheckAll();
 }
