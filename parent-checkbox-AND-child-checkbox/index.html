@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Parent Checkbox and their children checkbox - movies, drinks and bikes</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="page-title" class="page-title"></div>
+      <form id="form">
+        <ul class="check-list list-none">
+          <li class="check-block" id="parentblock1">
+            <label class="control-label" for="Color">
+              <input class="check-box master" id="Color" type="checkbox" value="Color" data-value="1">
+              <span class="label-text"></span>Color
+            </label>
+            <div class="hide option" id="block1">
+              <label for="red"><input type="checkbox" class="slave" id="red"/>Red</label>
+              <label for="yellow"><input type="checkbox" class="slave" id="yellow" />Yellow</label>
+              <label for="green"><input type="checkbox" class="slave" id="green" />Green</label>
+              <label for="blue"><input type="checkbox" class="slave" id="blue" />Blue</label>
+            </div>
+          </li>
+
+          <li class="check-block" id="parentblock2">
+            <label class="control-label" for="Movies">
+              <input class="check-box master" id="Movies" type="checkbox" value="Movies" data-value="2">
+              <span class="label-text"></span>Movies
+            </label>
+            <div class="hide option" id="block2">
+              <input type="checkbox" class="slave" id="slave1"/>Dar
+              <input type="checkbox" class="slave" id="slave2" />Ziddi
+              <input type="checkbox" class="slave" id="slave3" />Himmat
+            </div>
+          </li>
+
+          <li class="check-block" id="parentblock3">
+            <label class="control-label" for="Drink">
+              <input class="check-box master" id="Drink" type="checkbox" value="Drink" data-value="3">
+              <span class="label-text"></span>Drink
+            </label>
+            <div class="hide option" id="block3">
+              <input type="checkbox" class="slave" id="slave1"/>Coke
+              <input type="checkbox" class="slave" id="slave2" />Pepsi
+              <input type="checkbox" class="slave" id="slave3" />Maza
+              <input type="checkbox" class="slave" id="slave4" />Dew
+            </div>
+          </li>
+
+          <li class="check-block"  id="parentblock4">
+            <label class="control-label" for="Bikes">
+              <input class="check-box master" id="Bikes" type="checkbox" value="Bikes" data-value="4">
+              <span class="label-text"></span>Bikes
+            </label>
+            <div class="hide option" id="block4">
+              <input type="checkbox" class="slave" id="slave1"/>CBR
+              <input type="checkbox" class="slave" id="slave2" />Yamha
+              <input type="checkbox" class="slave" id="slave3" />Pulsar
+              <input type="checkbox" class="slave" id="slave4" />Hero
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
+  </body>
+  <script type="text/javascript" src="js/main.js"></script>
+</html>
