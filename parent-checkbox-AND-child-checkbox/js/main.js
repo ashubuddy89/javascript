@@ -1,29 +1,19 @@
 var listMenuItem = function () {
-  this.setAttributes();
-  this.init();
+  this.checkBox = document.getElementsByClassName("check-box");
 }
 
 listMenuItem.prototype = {
-  setAttributes: function () {
-    this.pageTitle = document.title;
-    this.form = document.getElementById("form");
-    this.checkBox = document.getElementsByClassName("check-box");
+
+  init: function (setBlockTitle, getBlockTitleData) {
+    this.setBlockHeading(setBlockTitle, getBlockTitleData);
+    this.showBindCheckboxList();
   },
 
-  init: function () {
-    this.setPageHeading();
-    this.checkBoxBindEvent();
+  setBlockHeading: function (setBlockTitle, getBlockTitleData) {
+    document.getElementById(setBlockTitle).innerHTML = "Exercise " + getBlockTitleData;
   },
 
-  checkBoxBindEvent: function () {
-    this.showCheckboxList();
-  },
-
-  setPageHeading: function () {
-    document.getElementById("page-title").innerHTML = "Exercise " + this.pageTitle;
-  },
-
-  showCheckboxList: function () {
+  showBindCheckboxList: function () {
     var obj = this;
     for (i = 0; i < obj.checkBox.length; i++) {
       this.checkBox[i].onclick = function () {
@@ -59,4 +49,5 @@ listMenuItem.prototype = {
 }
 window.onload = function () {
   var list_menu_item = new listMenuItem();
+  list_menu_item.init("page-title", document.title);
 }

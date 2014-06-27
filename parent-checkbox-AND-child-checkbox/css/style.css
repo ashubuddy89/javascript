@@ -53,6 +53,7 @@ body{
   vertical-align: middle;
   min-height: 18px;
   padding: 3px 15px;
+  cursor: pointer;
 }
 
 .check-box, .control-label input[type="checkbox"]{
