@@ -8,7 +8,6 @@ checkAllorNone.prototype = {
   SetPageHeading: function(){
     document.getElementById("page-title").innerHTML = "Exercise " + this.pageTitle;
   },
-  
 
   SetCheckboxStatus: function(value) { //method name
     for(var i=0; i < this.form.length; i++){
@@ -34,13 +33,10 @@ checkAllorNone.prototype = {
       obj.SetCheckboxStatus(false);
     });
   },
-
-  
 }
 
 window.onload = function(){
   var checkall_or_none = new checkAllorNone("form");
-
   checkall_or_none.SetPageHeading();
   checkall_or_none.bindEvents();
 }
