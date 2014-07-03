@@ -1,13 +1,13 @@
-var userInput = function (firstName, lastName) {
-  this.firstName = firstName;
-  this.lastName = lastName;
+var userInput = function () {
+  this.firstName = "";
+  this.lastName = "";
 }
 
 userInput.prototype = {
   
-  init: function (firstName, lastName) {
-    this.firstName = this.userPromptInput(this.firstName);
-    this.lastName = this.userPromptInput(this.lastName);
+  init: function () {
+    this.firstName = this.userPromptInput("Your First Name");
+    this.lastName = this.userPromptInput("Your Last Name");
     
     //alert and save user name
     this.showUserName();
@@ -23,11 +23,11 @@ userInput.prototype = {
 
   showUserName: function () {
     alert("Hello " +  this.firstName + " " + this.lastName);
-    document.getElementById("username").innerHTML = "Hello" + " " + this.firstName + " " + this.lastName
+    document.getElementById("username").innerHTML = "Hello " + this.firstName + " " + this.lastName;
   }
 }
 
 window.onload = function () {
-  var user_input = new userInput("First Name", "Last Name");
+  var user_input = new userInput();
   user_input.init();
 }
