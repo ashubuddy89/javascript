@@ -1,33 +1,29 @@
-var userInput = function () {
+var UserName = function () {
   this.firstName = "";
   this.lastName = "";
 }
 
-userInput.prototype = {
-  
-  init: function () {
-    this.firstName = this.userPromptInput("Your First Name");
-    this.lastName = this.userPromptInput("Your Last Name");
-    
-    //alert and save user name
-    this.showUserName();
-  },
+UserName.prototype.init = function () {
+  this.firstName = this.promptInput("First Name");
+  this.lastName = this.promptInput("Last Name");
+  this.show();
+}
 
-  userPromptInput: function (userName) {
-    var name = "";
-    while (name == null || name.trim() == ''){
-      name = prompt("Enter Your " + userName);
-    }
-    return name.trim();
-  },
 
-  showUserName: function () {
-    alert("Hello " +  this.firstName + " " + this.lastName);
-    document.getElementById("username").innerHTML = "Hello " + this.firstName + " " + this.lastName;
+UserName.prototype.promptInput = function (userName) {
+  var name = "";
+  while (name == null || name.trim() == ''){
+    name = prompt("Enter Your " + userName);
   }
+  return name;
+}
+
+UserName.prototype.show = function () {
+  alert("Hello " +  this.firstName + " " + this.lastName);
+  document.getElementById("username").innerHTML = "Hello " + this.firstName + " " + this.lastName;
 }
 
 window.onload = function () {
-  var user_input = new userInput();
-  user_input.init();
+  var inputResult = new UserName();
+  inputResult.init();
 }
