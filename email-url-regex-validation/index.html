@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Email and URL format validation</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script type="text/javascript" src="js/main.js"></script>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div id="page-title" class="page-title">Email and URL format validation</div>
+      <form id="form">
+        <div class="form-group">
+          <label for="login">Login Id</label>
+          <input type="textbox" class="form-input" id="login" name="Login Id">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-input validate" id="email" name="Email">
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="textbox" class="form-input" id="name" name="Name">
+        </div>
+        <div class="form-group">
+          <label for="timezone">Timezone</label>
+          <select id="timezone">
+            <option value="GMT">GMT</option>
+            <option value="-12.0">GMT -12:00</option>
+            <option value="-11.0">GMT -11:00</option>
+            <option value="-10.0">GMT -10:00</option>
+            <option value="-9.0">GMT -9:00</option>
+            <option value="-8.0">GMT -8:00</option>
+            <option value="-7.0">GMT -7:00</option>
+            <option value="-6.0">GMT -6:00</option>
+            <option value="-5.0">GMT -5:00</option>
+            <option value="-4.0">GMT -4:00</option>
+            <option value="-3.0">GMT -3:00</option>
+            <option value="-2.0">GMT -2:00</option>
+            <option value="-1.0">GMT -1:00</option>
+            <option value="0.0">GMT 0:00</option>
+            <option value="1.0">GMT 1:00</option>
+            <option value="2.0">GMT 2:00</option>
+            <option value="3.0">GMT 3:00</option>
+            <option value="4.0">GMT 4:00</option>
+            <option value="5.0">GMT 5:00</option>
+            <option value="6.0">GMT 6:00</option>
+            <option value="7.0">GMT 7:00</option>
+            <option value="8.0">GMT 8:00</option>
+            <option value="9.0">GMT 9:00</option>
+            <option value="10.0">GMT 10:00</option>
+            <option value="11.0">GMT 11:00</option>
+            <option value="12.0">GMT 12:00</option>
+          </select> 
+        </div>
+        <div class="form-group">
+          <label for="homepage">Home Page</label>
+          <input type="url" class="form-input validate" id="home" name="URL">
+        </div>
+        
+        <div class="form-group">  
+          <label for="aboutme" class="full">About me</label>
+          <textarea cols="50" rows="10" id="aboutme" class="" name="About me"></textarea>
+        </div>
+        <div class="form-group">
+          <div id="check">
+            <label for="notification" class="control-label">
+              <input type="checkbox" id="notification">
+              <span class="label-text"></span>
+              Receive notification of comments
+            </label>
+          </div>
+        </div>
+        <div class="form-group">
+          You will be sent an email when someone posts comments to your blog or Album.
+          <p>
+            <center>
+              Your password will be mailed to you. <br /><br />
+              <input type="submit" value="GO" class="submit" id="submit">
+            </center>
+          </p>
+        </div>
+      </form>
+    </div>
+  </body>
+
+
+
+  <script type="text/javascript" src="js/main.js"></script>
+</html>
