@@ -89,10 +89,12 @@ form{
 }
 input[type=checkbox]:focus + .label-text{
   border-color: #b02920;
+  box-shadow: 1px 1px 10px #b02920;
 }
 
 input[type=checkbox]:checked + .label-text{
-  border-color: gray;
+  border-color: #b02920;
+  box-shadow: none;
   background:  url(../images/check.gif) center no-repeat;
 }
 

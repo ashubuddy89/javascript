@@ -1,37 +1,37 @@
 numRegEx = /^([+-])?\d+(\.[\d]+)?$/;
 
-var Form = function () {
-  this.form = document.getElementById("form");
-  this.status = document.getElementById("status");
-  this.number = document.getElementById("number");
+var Form = function (formElem, numberElem, statusElem) {
+  this.formElem = formElem;
+  this.numberElem = numberElem;
+  this.statusElem = statusElem;
 }
 
-Form.prototype.isNumeric = function(){
+Form.prototype.isNumeric = function () {
   var _this = this,
-      status = '',
-      userValue = _this.number.value.trim();
+    userValue = _this.numberElem.value.trim();
 
-  if(!numRegEx.test(userValue)){
+  if (!numRegEx.test(userValue)) {
     alert("Please enter a numeric value!")
-    _this.number.focus();
-    _this.status.value = false;
-    status = false;
+    _this.numberElem.focus();
+    _this.statusElem.value = false;
+    return false;
   } else {
-    _this.status.value = true;
-    status = true;
+    _this.statusElem.value = true;
   }
-  return status;
+  return true;
 }
 
-Form.prototype.submitForm = function(){
+Form.prototype.submitForm = function () {
   var _this = this;
-  _this.form.onsubmit = function(event){
-    event.
+  _this.formElem.onsubmit = function (event) {
     return _this.isNumeric();
   }
 }
 
 window.onload = function () {
-  var validateForm = new Form();
-      validateForm.submitForm();
+  this.formElem = document.getElementById("form");
+  this.numberElem = document.getElementById("number");
+  this.statusElem = document.getElementById("status");
+  var validateForm = new Form(formElem, numberElem, statusElem);
+  validateForm.submitForm();
 }
