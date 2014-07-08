@@ -19,7 +19,7 @@ Form.prototype.validateFields = function(input, regex){
 Form.prototype.submitForm = function(){
   var _this = this;
   _this.formElem.onsubmit = function(event){
-    if(_this.validateFields(_this.email, emailRegEx) && _this.validateFields(_this.url, urlRegEx)){
+    if(_this.validateFields(_this.email, emailRegEx) & _this.validateFields(_this.url, urlRegEx)){
       return true;
     }
     else {
