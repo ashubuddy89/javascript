@@ -1,9 +1,9 @@
-var checkAllorNone = function(form_id){
+var CheckAllBoxes = function(form_id){
   this.pageTitle = document.title;
   this.form = document.getElementById(form_id);
 }
 
-checkAllorNone.prototype = {
+CheckAllBoxes.prototype = {
 
   SetPageHeading: function(){
     document.getElementById("page-title").innerHTML = "Exercise " + this.pageTitle;
@@ -16,18 +16,18 @@ checkAllorNone.prototype = {
   }, 
 
   bindEvents: function(){
-    this.checkAllBoxes();
-    this.unCheckAllBoxes();
+    this.checkAll();
+    this.unCheckAll();
   },
 
-  checkAllBoxes: function(){
+  checkAll: function(){
     var obj = this;
     document.getElementById("check-all").addEventListener("click", function() {
       obj.SetCheckboxStatus(true);
     });
   },
 
-  unCheckAllBoxes: function(){
+  unCheckAll: function(){
     var obj = this;
     document.getElementById("check-none").addEventListener("click", function() {
       obj.SetCheckboxStatus(false);
@@ -36,7 +36,7 @@ checkAllorNone.prototype = {
 }
 
 window.onload = function(){
-  var checkall_or_none = new checkAllorNone("form");
-  checkall_or_none.SetPageHeading();
-  checkall_or_none.bindEvents();
+  var check_all_boxed = new CheckAllBoxes("form");
+  check_all_boxed.SetPageHeading();
+  check_all_boxed.bindEvents();
 }

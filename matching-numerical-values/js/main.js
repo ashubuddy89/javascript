@@ -1,30 +1,33 @@
+numRegEx = /^([+-])?\d+(\.[\d]+)?$/;
+
 var Form = function () {
   this.form = document.getElementById("form");
   this.status = document.getElementById("status");
   this.number = document.getElementById("number");
-  this.numRegEx = /^([+]|[-])?\d+(\.[\d]+)?$/;
 }
 
 Form.prototype.isNumeric = function(){
-  var obj = this,
+  var _this = this,
       status = '',
-      userValue = obj.number.value.trim();
+      userValue = _this.number.value.trim();
 
-  if(!obj.numRegEx.test(userValue)){
+  if(!numRegEx.test(userValue)){
     alert("Please enter a numeric value!")
-    obj.number.focus();
-    obj.status.value = false;
+    _this.number.focus();
+    _this.status.value = false;
     status = false;
-  }else{
+  } else {
+    _this.status.value = true;
     status = true;
   }
   return status;
 }
 
 Form.prototype.submitForm = function(){
-  var obj = this;
-  obj.form.onsubmit = function(){
-    return obj.isNumeric();
+  var _this = this;
+  _this.form.onsubmit = function(event){
+    event.
+    return _this.isNumeric();
   }
 }
 
