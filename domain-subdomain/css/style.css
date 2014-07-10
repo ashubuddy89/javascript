@@ -1,0 +1,47 @@
+body{
+  background: #f2f2f2;
+  font: 14px arial;
+}
+
+.wrapper{
+  max-width: 430px;
+  margin: 30px auto;
+  border: solid 1px #9ab368;
+  border-radius: 10px;
+  background: #e8f2d7;
+  overflow: hidden;
+}
+.page-title{
+  background: #9ab368;
+  font-size: 1.3em;
+  padding: 10px 15px;
+  color: #fff;
+  border-radius: 10px 10px 0 0;
+  margin: -1px -1px 0;
+  text-align: center;
+}
+.submit{
+  background: #536035;
+  color: #fff;
+  padding: 5px 10px;
+}
+
+form{
+  padding:10px  20px;
+}
+.form-group{
+  float: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.form-group label{
+  display: inline-block;
+  vertical-align: middle;
+  min-width: 70px;
+}
+.form-group label.full{width: 100%; margin-bottom: 10px;}
+.form-group .form-input{
+  border: solid 1px #006633;
+  padding: 3px 5px;
+  width: 300px;
+}
