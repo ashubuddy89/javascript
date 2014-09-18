@@ -1,72 +1,58 @@
-var dynamicTable = function (addRowBtn, table) {
+var DynamicTable = function (pageTitle, addRowBtn, table) {
   this.pageTitle = pageTitle;
-  this.addRowBtn = addRowBtn
-  this.table = table
+  this.addRowBtn = addRowBtn;
+  this.table = table;
 }
 
-dynamicTable.prototype.init = function () {
-  this.appendRow();
-}
-
-dynamicTable.prototype.setPageHeading = function(){
+DynamicTable.prototype.setPageHeading = function(){
   document.getElementById("page-title").innerHTML = "Exercise " + this.pageTitle;
 }
 
-dynamicTable.prototype.createButton = function (val, visible) {
+DynamicTable.prototype.createButton = function (val) {
   btn = document.createElement("input");
   btn.type = "button";
   btn.value = val;
   btn.className = val.toLowerCase();
-  btn.style.display = visible ? 'inline' : "none";
   return btn;
 }
 
-dynamicTable.prototype.createCells = function () {
-  var _this = this;
-  var name = _this.createCell('name'),
-      email = _this.createCell('email'),
-      action = _this.createCell('action');
+DynamicTable.prototype.createCells = function () {
+  var name = this.createCell(),
+      email = this.createCell(),
+      action = this.createActionBtn();
   return [name, email, action];
 }
 
-dynamicTable.prototype.createCell = function (cellType) {
-  var _this = this;
+DynamicTable.prototype.createActionBtn = function () {
   var cell = document.createElement("td");
-  if (cellType == 'action') {
-    buttons = [
-              _this.createButton('Save', true),
-              _this.createButton('Edit', false),
-              _this.createButton('Delete', false)
+  buttons = [
+              this.createButton('Save'),
+              this.createButton('Edit'),
+              this.createButton('Delete')
             ];
-    _this.appeadChildrenTo(cell, buttons);    
-  }
-  else {
-    var input = document.createElement("input"),
-        label = document.createElement("span");
-    input.type = "text";      
-    _this.appeadChildrenTo(cell, [input, label]);
-  }
+  this.appendChildrenTo(cell, buttons);
   return cell;
 }
 
-dynamicTable.prototype.addListenerSaveAction = function () {
-  var _this = this,
-      row = _this.table.rows[_this.table.rows.length - 1],
-      save = row.getElementsByClassName("save")[0],
-      edit = row.getElementsByClassName("edit")[0],
-      del = row.getElementsByClassName("delete")[0],
-      emailRegEx = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+DynamicTable.prototype.createCell = function () {
+  var cell = document.createElement("td");
+  var input = document.createElement("input"),
+      label = document.createElement("span");
+  input.type = "text";
+  input.setAttribute("class", "input-box");  
+  label.setAttribute("class", "label-box");   
+  this.appendChildrenTo(cell, [input, label]);
+  
+  return cell;
+}
 
+
+DynamicTable.prototype.saveButtonClickEvent = function (row, save, nameInputField, emailInputField, nameSpanField, emailSpanField) {
+  var emailRegEx =  /^[\w-]+(\.[\w-]+)*@[A-Za-z0-9-]{2,}(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,4})$/;
 
   save.addEventListener("click", function () {
-    var nameInputField = row.getElementsByTagName("input")[0],
-        emailInputField = row.getElementsByTagName("input")[1],
-        nameSpanField = row.getElementsByTagName("span")[0],
-        emailSpanField = row.getElementsByTagName("span")[1],
-
-        nameValue = nameInputField.value,
+    var nameValue = nameInputField.value,
         emailValue = emailInputField.value;
-
     if (nameValue.trim() == "" || emailValue.trim() == "") {
       alert("Fields should not empty");
       return false;
@@ -75,96 +61,71 @@ dynamicTable.prototype.addListenerSaveAction = function () {
       alert("Please enter a valid email.");
       return false;
     }
-    else {
-      nameInputField.style.display = "none";
-      emailInputField.style.display = "none";
-
-      nameSpanField.style.display = "block";
-      emailSpanField.style.display = "block";
-
+    else {      
+      row.setAttribute("class", "edit-data");
       nameSpanField.innerHTML = nameValue;
       emailSpanField.innerHTML = emailValue;
-
-      this.style.display = "none";
-      edit.style.display = "inline";
-      del.style.display = "inline"; 
     }
   });
 }
 
-dynamicTable.prototype.addListenerEditAction = function () {
-  var _this = this,
-      row = _this.table.rows[_this.table.rows.length - 1],
-      save = row.getElementsByClassName("save")[0],
-      edit = row.getElementsByClassName("edit")[0],
-      del = row.getElementsByClassName("delete")[0];
-
+DynamicTable.prototype.editButtonClickEvent = function (row, edit) {
   edit.addEventListener("click", function () {
-    var nameInputField = row.getElementsByTagName("input")[0],
-        emailInputField = row.getElementsByTagName("input")[1],
-        nameSpanField = row.getElementsByTagName("span")[0],
-        emailSpanField = row.getElementsByTagName("span")[1],
-
-        nameValue = nameInputField.value,
-        emailValue = emailInputField.value;
-
-    nameInputField.style.display = "block";
-    emailInputField.style.display = "block";
-
-    nameSpanField.style.display = "none";
-    emailSpanField.style.display = "none";
-
-    this.style.display = "none";
-    save.style.display = "inline";
-    del.style.display = "none";
+    row.setAttribute("class", "save-data"); 
   });
 }
 
-dynamicTable.prototype.addListenerDeleteAction = function () {
-  var _this = this,
-      row = _this.table.rows[_this.table.rows.length - 1],
-      del = row.getElementsByClassName("delete")[0];
-
+DynamicTable.prototype.deleteButtonClickEvent = function (row, del) {
   del.addEventListener("click", function () {
     row.remove();
   });
 }
-
-dynamicTable.prototype.createRow = function () {
-  var _this = this,
-      rowCount = _this.table.rows.length,
-      row = _this.table.insertRow(rowCount++),
-      cells = _this.createCells();
-  _this.appeadChildrenTo(row, cells);
-  _this.attachActionBtnListeners();
+  
+DynamicTable.prototype.createRow = function () {
+  var rowCount = this.table.rows.length,
+      row = this.table.insertRow(rowCount++),
+      cells = this.createCells();
+  this.appendChildrenTo(row, cells);
+  this.bindActionButtons();
 }
 
-dynamicTable.prototype.appeadChildrenTo = function(row, cells) {
+DynamicTable.prototype.appendChildrenTo = function(row, cells) {
   cells.forEach(function(v, i) {
     row.appendChild(v);
   })
 }
 
-dynamicTable.prototype.attachActionBtnListeners = function () {
+DynamicTable.prototype.appendRow = function () {
   var _this = this;
-  _this.addListenerSaveAction();
-  _this.addListenerEditAction();
-  _this.addListenerDeleteAction();
-}
-
-dynamicTable.prototype.appendRow = function () {
-  var _this = this,
-      rowCount = _this.table.rows.length;
-  _this.addRowBtn.addEventListener("click", function () {
+  this.addRowBtn.addEventListener("click", function () {
     _this.createRow();
   });
 }
 
+DynamicTable.prototype.bindActionButtons = function () {
+  var row = this.table.rows[this.table.rows.length - 1];
+      save = row.getElementsByClassName("save")[0],
+      edit = row.getElementsByClassName("edit")[0],
+      del = row.getElementsByClassName("delete")[0];
+      nameInputField = row.getElementsByTagName("input")[0],
+      emailInputField = row.getElementsByTagName("input")[1],
+      nameSpanField = row.getElementsByTagName("span")[0],
+      emailSpanField = row.getElementsByTagName("span")[1];
+
+    this.saveButtonClickEvent(row, save, nameInputField, emailInputField, nameSpanField, emailSpanField);
+    this.editButtonClickEvent(row, edit);
+    this.deleteButtonClickEvent(row, del);
+}
+
+DynamicTable.prototype.init = function(){
+  this.setPageHeading();
+  this.appendRow();
+}
+
 window.onload = function () {
-  pageTitle = document.title;
-  addRowBtn = document.getElementById("add-row-btn");
-  table = document.getElementById("table");
-  var dynamic_table = new dynamicTable(addRowBtn, table);
-  dynamic_table.setPageHeading();
+  var pageTitle = document.title,
+      addRowBtn = document.getElementById("add-row-btn"),
+      table = document.getElementById("table"),
+      dynamic_table = new DynamicTable(pageTitle, addRowBtn, table);
   dynamic_table.init();
 }
